@@ -1,5 +1,6 @@
 {
   "name": "luxury-china-travel",
+  "homepage": "https://385342748-arch.github.io/newnew/"
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack serve",
