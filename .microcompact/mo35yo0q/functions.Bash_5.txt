@@ -1,0 +1,1 @@
+{"exitCode":0,"output":"","outputLines":0,"stderr":"","command":"cd /home/project && node -e \"\nconst fs = require('fs');\nconst path = '/home/project/tmp/panda_original.png';\nconst data = fs.readFileSync(path);\nconst base64 = data.toString('base64');\nconsole.log('data:image/png;base64,' + base64);\n\" > /home/project/tmp/panda_base64.txt","timedOut":false}
