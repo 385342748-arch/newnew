@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>生成大熊猫LOGO</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #result { margin-top: 20px; }
+    img { max-width: 100%; border-radius: 8px; }
+    .loading { color: #666; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>生成大熊猫LOGO</h1>
+  <p>参考用户提供的LOGO风格，生成一个能看到脖子和肩膀的大熊猫LOGO</p>
+  <button id="generateBtn">生成LOGO</button>
+  <div id="result"></div>
+
+  <script>
+    const SUPABASE_URL = window.location.origin + '/sb-api';
+    const supabase = window.supabase.createClient(SUPABASE_URL, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lb28tYWdlbnQiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc0NDg1MTIwMCwiZXhwIjoxODAyNjE3NjAwfQ.test');
+
+    document.getElementById('generateBtn').addEventListener('click', async () => {
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '<p class="loading">正在生成LOGO，请稍候...</p>';
+
+      try {
+        const { data, error } = await supabase.functions.invoke('ai-image-gen', {
+          body: {
+            prompt: 'A cute cartoon panda logo design, showing the panda\'s head, neck and shoulders. The panda has a round face with black eye patches, white fur on face and body, black ears. Simple and clean design, suitable for a travel company logo. The panda should be friendly and welcoming. Circular composition showing upper body including shoulders. Soft colors, professional logo style.',
+            model: 'wan2.7-image',
+            size: '1K',
+            n: 1
+          }
+        });
+
+        if (error) {
+          resultDiv.innerHTML = `<p class="error">错误: ${error.message}</p>`;
+          return;
+        }
+
+        const imageUrl = data?.output?.choices?.[0]?.message?.content?.[0]?.image;
+        if (imageUrl) {
+          resultDiv.innerHTML = `<img src="${imageUrl}" alt="Generated Panda Logo" /><p>图片URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a></p>`;
+        } else {
+          resultDiv.innerHTML = `<p class="error">未能获取图片URL</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+      } catch (err) {
+        resultDiv.innerHTML = `<p class="error">异常: ${err.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

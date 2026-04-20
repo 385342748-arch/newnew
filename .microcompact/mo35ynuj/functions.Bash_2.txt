@@ -1,0 +1,1 @@
+{"exitCode":0,"output":"total 1920\ndrwxr-xr-x 2 root root    4096 Apr 18 00:44 .\ndrwx------ 1 root root    4096 Apr 18 00:25 ..\n-rw-r--r-- 1 root root   25512 Apr 18 00:44 0c29c84e6a14429637caf2be59a2ec5b.png\n-rw-r--r-- 1 root root 1929037 Apr 18 00:25 微信图片_20260404125620_539_333.png","outputLines":5,"stderr":"","command":"ls -la /home/project/assets/","timedOut":false}

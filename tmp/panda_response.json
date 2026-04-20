@@ -1,0 +1,1 @@
+{"error":{"type":"invalid_request_error","message":"Authorization 头格式错误，应为 Bearer <service_ak>","code":"SERVICE_AK_FORMAT_INVALID"}}

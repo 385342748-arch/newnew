@@ -1,0 +1,1 @@
+{"exitCode":0,"output":"","outputLines":0,"stderr":"","command":"mkdir -p /home/project/tmp && cp /home/project/assets/0c29c84e6a14429637caf2be59a2ec5b.png /home/project/tmp/panda_original.png","timedOut":false}
